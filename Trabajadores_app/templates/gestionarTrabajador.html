@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block cuerpo %} 
+  {% load static %}
+
+ <div class="row"> <!-- La fila -->
+
+   <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"> <!-- Columna izquierda -->
+    <h1>Trabajador</h1>
+    <div class="card">
+      <div class="card-body">
+        <form action="registrarTrabajador/" method="POST"> {% csrf_token %} <!-- Falta action -->
+          <div class="form-group">
+            <input type="text" id="txtidtrabajador" name="txtidtrabajador" placeholder="Id Trabajador" minlength="1" maxlength="6" class="form-control" required>
+          </div>
+          <div class="form-group py-3">
+            <input type="text" id="txtnombretrabajador" name="txtnombretrabajador" placeholder="Nombre Trabajador" maxlength="45" class="form-control" required>
+          </div>
+          <div class="form-group py-2">
+            <input type="text" id="txtapellidop" name="txtapellidop" placeholder="Apelllido Paterno Trabajador" maxlength="100" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <input type="text" id="txtapellidom" name="txtapellidom" placeholder="Apelllido Materno Trabajador" maxlength="45" class="form-control" required>
+          </div>
+          <div class="form-group py-3">
+            <input type="text" id="txtemail" name="txtemail" placeholder="Email Trabajador" maxlength="15" class="form-control" required>
+          </div>
+          <div class="form-group py-2">
+            <input type="date" id="txtfecha" name="txtfecha" placeholder="Fecha de Nacimiento Trabajador" maxlength="45" class="form-control" required>
+          </div>
+          <div class="form-group py-2">
+            <input type="text" id="txtcelular" name="txtcelular" placeholder="Celular Trabajador" maxlength="45" class="form-control" required>
+          </div>
+          <div class="form-group py-2">
+            <input type="text" id="txtgenero" name="txtgenero" placeholder="Genero Trabajador" maxlength="45" class="form-control" required>
+          </div>
+          <div class="form-group py-2">
+            <button type="submit" class="btn btn-primary">Guardar Trabajador</button>
+          </div>
+
+        </form>
+      </div>
+    </div> <!-- Tarjeta -->
+   </div> <!-- Columna izquierda -->
+
+   <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8"> <!-- Columna derecha -->
+   <h1>Listado de Trabajadores</h1>
+   <img class="w-50" src="{% static 'img/trabajadoresImage.png' %}" alt="hoa" width="100" height="auto">
+    <br>
+    <br>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Id_Trabajador</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido Paterno</th>
+        <th scope="col">Apellido Materno</th>
+        <th scope="col">Email</th>
+        <th scope="col">Fecha de Nacimiento</th>
+        <th scope="col">Celular</th>
+        <th scope="col">Genero</th>
+        <th>Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      {% for m in mistrabajadores %}
+      
+      <tr>
+        <td> {{forloop.counter}} </td>
+        <td> {{m.id_trabajador}} </td>
+        <td> {{m.nombre_trabajador}} </td>
+        <td> {{m.apellido_P}} </td>
+        <td> {{m.apellido_M}} </td>
+        <td> {{m.email}} </td>
+        <td> {{m.fecha_de_nacimiento}} </td>
+        <td> {{m.celular}} </td>
+        <td> {{m.genero}} </td>
+        <td> <a href="seleccionarTrabajador/{{m.id_trabajador}}" class="btn btn-info"> Editar</a> </td> <!-- Falta -->
+        <td> <a href="borrarTrabajador/{{m.id_trabajador}}" class="btn btn-danger"> Borrar</a> </td> <!-- Falta -->
+      </tr>
+      
+      
+      
+      {% endfor %}
+      
+    </tbody>
+  </table>
+
+ </div> <!-- Columna derecha -->
+
+ 
+
+{% endblock %}

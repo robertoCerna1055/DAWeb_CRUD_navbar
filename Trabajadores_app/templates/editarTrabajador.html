@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+
+<div class="row"> <!-- Fila en editar-->
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Trabajador</h2>
+        <!-- Aqui codigo tarjeta -->
+
+            <div class="card">
+                <div class="card-body">
+                <form action="/editarTrabajador/" method="POST"> {% csrf_token %} <!-- Falta action -->
+                    <div class="form-group">
+                    <input type="text" id="txtidtrabajador" name="txtidtrabajador" minlength="1" maxlength="6" value="{{mistrabajadores.id_trabajador}}" class="form-control" readonly required>
+                    </div>
+                    <div class="form-group py-3">
+                    <input type="text" id="txtnombretrabajador" name="txtnombretrabajador" value="{{mistrabajadores.nombre_trabajador}}" maxlength="45" class="form-control" required>
+                    </div>
+                    <div class="form-group py-2">
+                    <input type="text" id="txtapellidop" name="txtapellidop" maxlength="100" value="{{mistrabajadores.apellido_P}}" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txtapellidom" name="txtapellidom" maxlength="45" value="{{mistrabajadores.apellido_M}}" class="form-control" required>
+                        </div>
+                        <div class="form-group py-3">
+                        <input type="text" id="txtemail" name="txtemail" value="{{mistrabajadores.email}}" maxlength="15" class="form-control" required>
+                        </div>
+                        <div class="form-group py-2">
+                        <input type="date" id="txtfecha" name="txtfecha" maxlength="45" value="{{mistrabajadores.fecha_de_nacimiento}}" class="form-control" required>
+                        </div>
+                        <div class="form-group py-2">
+                        <input type="text" id="txtcelular" name="txtcelular" maxlength="45" value="{{mistrabajadores.celular}}" class="form-control" required>
+                        </div>
+                        <div class="form-group py-2">
+                        <input type="text" id="txtgenero" name="txtgenero" maxlength="45" value="{{mistrabajadores.genero}}" class="form-control" required>
+                        </div>
+                        <div class="form-group py-2">
+                        <button type="submit" class="btn btn-primary">Guardar Trabajador</button>
+                        </div>
+                </form>
+                </div>
+            </div> <!-- Tarjeta -->
+
+
+        <!-- Aqui codigo tarjeta -->
+
+    
+    </div> 
+
+</div> <!-- Fila en editar-->
+
+
+{% endblock %}
