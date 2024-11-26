@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block cuerpo %} 
+  {% load static %}
+
+ <div class="row"> <!-- La fila -->
+
+   <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"> <!-- Columna izquierda -->
+    <h1>Platillo</h1>
+    <div class="card">
+      <div class="card-body">
+        <form action="registrarPlatillo/" method="POST"> {% csrf_token %} <!-- Falta action -->
+          <div class="form-group">
+            <input type="text" id="txtidplatillo" name="txtidplatillo" placeholder="Id Platillo" minlength="1" maxlength="6" class="form-control" required>
+          </div>
+          <div class="form-group py-3">
+            <input type="text" id="txtdnombresplatillo" name="txtdnombresplatillo" placeholder="Nombre Platillo" maxlength="45" class="form-control" required>
+          </div>
+          <div class="form-group py-2">
+            <input type="text" id="txtdescripcion" name="txtdescripcion" placeholder="Descripcion Platillo" maxlength="100" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <input type="text" id="txtingredientes" name="txtingredientes" placeholder="Ingredientes Platillo" maxlength="100" class="form-control" required>
+          </div>
+          <div class="form-group py-3">
+            <input type="text" id="txtprecio" name="txtprecio" placeholder="Precio Platillo" maxlength="10" class="form-control" required>
+          </div>
+          <div class="form-group py-2">
+            <input type="text" id="txtcalorias" name="txtcalorias" placeholder="Calorias Platillo" maxlength="10" class="form-control" required>
+          </div>
+          <div class="form-group py-2">
+            <input type="text" id="txttipo" name="txttipo" placeholder="Tipo Platillo" maxlength="45" class="form-control" required>
+          </div>
+          <div class="form-group py-2">
+            <input type="text" id="txtcantidad" name="txtcantidad" placeholder="Cantidad Platillo" maxlength="10" class="form-control" required>
+          </div>
+          <div class="form-group py-2">
+            <button type="submit" class="btn btn-primary">Guardar Platillo</button>
+          </div>
+
+        </form>
+      </div>
+    </div> <!-- Tarjeta -->
+   </div> <!-- Columna izquierda -->
+
+   <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8"> <!-- Columna derecha -->
+   <h1>Listado de Platillos</h1>
+   <img class="w-50" src="{% static 'img/images.jpg' %}" alt="hoa" width="100" height="auto">
+    <br>
+    <br>
+
+    <!-- La tabla -->
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Id_Platillo</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Descripcion</th>
+        <th scope="col">Ingredientes</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Calorias</th>
+        <th scope="col">Tipo</th>
+        <th scope="col">Cantidad</th>
+        <th>Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      {% for m in misplatillos %}
+      
+      <tr>
+        <td> {{forloop.counter}} </td>
+        <td> {{m.id_platillo}} </td>
+        <td> {{m.nombre_platillo}} </td>
+        <td> {{m.descripcion}} </td>
+        <td> {{m.ingredientes}} </td>
+        <td> {{m.precio}} </td>
+        <td> {{m.calorias}} </td>
+        <td> {{m.tipo}} </td>
+        <td> {{m.cantidad}} </td>
+        <td> <a href="seleccionarPlatillo/{{m.id_platillo}}" class="btn btn-info"> Editar</a> </td> <!-- Falta -->
+        <td> <a href="borrarPlatillo/{{m.id_platillo}}" class="btn btn-danger"> Borrar</a> </td> <!-- Falta -->
+      </tr>
+      
+      
+      
+      {% endfor %}
+      
+    </tbody>
+  </table>
+
+ </div> <!-- Columna derecha -->
+
+ 
+
+{% endblock %}
