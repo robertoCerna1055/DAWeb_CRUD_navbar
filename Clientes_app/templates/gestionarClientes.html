@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block cuerpo %} 
+  {% load static %}
+
+ <div class="row"> <!-- La fila -->
+
+   <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"> <!-- Columna izquierda -->
+    <h1>Clientes</h1>
+    <div class="card">
+      <div class="card-body">
+        <form action="registrarCliente/" method="POST"> {% csrf_token %} <!-- Falta action -->
+          <div class="form-group">
+            <input type="text" id="txtidcliente" name="txtidcliente" placeholder="Id Cliente" minlength="1" maxlength="6" class="form-control" required>
+          </div>
+          <div class="form-group py-3">
+            <input type="text" id="txtnombrecliente" name="txtnombrecliente" placeholder="Nombre Cliente" maxlength="45" class="form-control" required>
+          </div>
+          <div class="form-group py-2">
+            <input type="text" id="txtapellidop" name="txtapellidop" placeholder="Apelllido Paterno Cliente" maxlength="100" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <input type="text" id="txtapellidom" name="txtapellidom" placeholder="Apelllido Materno Cliente" maxlength="45" class="form-control" required>
+          </div>
+          <div class="form-group py-3">
+            <input type="date" id="txtfecha" name="txtfecha" placeholder="Fecha de Nacimiento Cliente" maxlength="15" class="form-control" required>
+          </div>
+          <div class="form-group py-2">
+            <input type="text" id="txtemail" name="txtemail" placeholder="Email Cliente" maxlength="45" class="form-control" required>
+          </div>
+          <div class="form-group py-2">
+            <input type="text" id="txtcelular" name="txtcelular" placeholder="Celular Cliente" maxlength="45" class="form-control" required>
+          </div>
+          <div class="form-group py-2">
+            <input type="text" id="txtgenero" name="txtgenero" placeholder="Genero Cliente" maxlength="45" class="form-control" required>
+          </div>
+          <div class="form-group py-2">
+            <button type="submit" class="btn btn-primary">Guardar Cliente</button>
+          </div>
+
+        </form>
+      </div>
+    </div> <!-- Tarjeta -->
+   </div> <!-- Columna izquierda -->
+
+   <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8"> <!-- Columna derecha -->
+   <h1>Listado de Clientes</h1>
+   <img class="w-50" src="{% static 'img/clientesImage.jpg' %}" alt="hoa" width="100" height="auto">
+    <br>
+    <br>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Id_Cliente</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido Paterno</th>
+        <th scope="col">Apellido Materno</th>
+        <th scope="col">Fecha de Nacimiento</th>
+        <th scope="col">Email</th>
+        <th scope="col">Celular</th>
+        <th scope="col">Genero</th>
+        <th>Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      {% for m in misclientes %}
+      
+      <tr>
+        <td> {{forloop.counter}} </td>
+        <td> {{m.id_cliente}} </td>
+        <td> {{m.nombre_cliente}} </td>
+        <td> {{m.apellido_P}} </td>
+        <td> {{m.apellido_M}} </td>
+        <td> {{m.fecha_de_nacimiento}} </td>
+        <td> {{m.email}} </td>
+        <td> {{m.celular}} </td>
+        <td> {{m.genero}} </td>
+        <td> <a href="seleccionarCliente/{{m.id_cliente}}" class="btn btn-info"> Editar</a> </td> <!-- Falta -->
+        <td> <a href="borrarCliente/{{m.id_cliente}}" class="btn btn-danger"> Borrar</a> </td> <!-- Falta -->
+      </tr>
+      
+      
+      
+      {% endfor %}
+      
+    </tbody>
+  </table>
+
+ </div> <!-- Columna derecha -->
+
+ 
+
+{% endblock %}
