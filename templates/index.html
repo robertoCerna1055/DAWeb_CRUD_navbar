@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Platillos SteakHouse</title>
+  </head>
+  <body>
+
+        {% extends "base.html" %}
+
+        {% load static %}
+
+        {% block titulo %}  <title>SteakHouse Roberto Cerna</title>  {% endblock titulo %}
+
+        {% block cuerpo %}  
+        
+        <div class="d-flex flex-column justify-content-center align-items-center">
+            <h1>SteakHouse Roberto Cerna</h1>
+        
+
+        <img class="w-50" src="{% static 'img/imagenPlatillo.jpg' %}" alt="hoa" width="400" height="auto">
+
+        </div>
+        {% endblock cuerpo %}
+
+        
+
+  </body>
+</html>
