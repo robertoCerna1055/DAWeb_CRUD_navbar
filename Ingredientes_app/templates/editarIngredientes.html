@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+
+<div class="row"> <!-- Fila en editar-->
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Ingredientes</h2>
+        <!-- Aqui codigo tarjeta -->
+
+            <div class="card">
+                <div class="card-body">
+                <form action="/editarIngredientes/" method="POST"> {% csrf_token %} <!-- Falta action -->
+                    <div class="form-group">
+                    <input type="text" id="txtidingrediente" name="txtidingrediente" minlength="1" maxlength="6" value="{{misingredientes.id_ingrediente}}" class="form-control" readonly required>
+                    </div>
+                    <div class="form-group py-3">
+                    <input type="text" id="txtnombreingrediente" name="txtnombreingrediente" value="{{misingredientes.nombre_ingrediente}}" maxlength="45" class="form-control" required>
+                    </div>
+                    <div class="form-group py-2">
+                    <input type="date" id="txtcaducidad" name="txtcaducidad" maxlength="100" value="{{misingredientes.caducidad}}" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txtcodigo" name="txtcodigo" maxlength="45" value="{{misingredientes.codigo}}" class="form-control" required>
+                        </div>
+                        <div class="form-group py-3">
+                        <input type="text" id="txttipo" name="txttipo" value="{{misingredientes.tipo}}" maxlength="15" class="form-control" required>
+                        </div>
+                        <div class="form-group py-2">
+                        <input type="text" id="txtdescripcion" name="txtdescripcion" maxlength="45" value="{{misingredientes.descripcion}}" class="form-control" required>
+                        </div>
+                        <div class="form-group py-2">
+                        <input type="text" id="txtcantidad" name="txtcantidad" maxlength="45" value="{{misingredientes.cantidad}}" class="form-control" required>
+                        </div>
+                        <div class="form-group py-2">
+                        <input type="text" id="txtid_sucursal" name="txtid_sucursal" maxlength="45" value="{{misingredientes.id_sucursal}}" class="form-control" required>
+                        </div>
+                        <div class="form-group py-2">
+                        <button type="submit" class="btn btn-primary">Guardar Ingredientes</button>
+                        </div>
+                </form>
+                </div>
+            </div> <!-- Tarjeta -->
+
+
+        <!-- Aqui codigo tarjeta -->
+
+    
+    </div> 
+
+</div> <!-- Fila en editar-->
+
+
+{% endblock %}
